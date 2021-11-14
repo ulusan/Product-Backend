@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Business.Abstract;
+using Business.BusinessAspects.Autofac;
 using Business.CCS;
 using Business.Constants;
 using Business.ValidationRules.FluentValidation;
@@ -61,16 +62,17 @@ namespace Business.Concrete
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Update(Product product)
         {
-            return null;
 
-
+            _productDal.Update(product);
+            return new SuccessResult(Messages.ProductUpdated);
         }
 
         public IResult Delete(Product product)
         {
-            return null;
+            _productDal.Delete(product);
+            return new SuccessResult(Messages.ProductDeleted);
         }
-
+        [SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {

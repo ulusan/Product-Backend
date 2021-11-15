@@ -20,6 +20,7 @@ using Core.Utilities.Security.JWT;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 
 namespace WebAPI
@@ -46,6 +47,9 @@ namespace WebAPI
                 options.AddPolicy("AllowOrigin",
                     builder => builder.WithOrigins("http://localhost:44345"));
             });
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             //startup da bu instance üretimini yapmak ileriki süreçte sýkýntý çýkartýr. Çünkü ilerde bir API eklediðinde tekrardan enjekte etmek zorunda kalýrýz
             //services.AddSingleton<IProductService, ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
@@ -66,6 +70,7 @@ namespace WebAPI
                         IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey)
                     };
                 });
+            
             services.AddDependencyResolvers(new ICoreModule[]
             {
                 new CoreModule(),

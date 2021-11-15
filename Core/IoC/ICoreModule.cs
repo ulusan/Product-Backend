@@ -7,6 +7,8 @@ namespace Core.IoC
 {
     public interface ICoreModule
     {
+        //bağımlılıklar
+        //yükleme 
         void Load(IServiceCollection collection);
     }
 }

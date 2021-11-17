@@ -42,7 +42,7 @@ namespace WebAPI
             //AOP
             //Postsharp
             services.AddControllers();
-            
+
             //services.AddMemoryCache();
             services.AddCors(options =>
             {
@@ -91,7 +91,7 @@ namespace WebAPI
 
             app.ConfigureCustomExceptionMiddleware();
             //bu adresten gelen herþeye güveniyorum kabul et
-            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4201").AllowAnyHeader());
             
             app.UseHttpsRedirection();
 

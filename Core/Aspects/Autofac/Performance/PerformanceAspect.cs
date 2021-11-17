@@ -11,6 +11,8 @@ namespace Core.Aspects.Autofac.Performance
 {
     public class PerformanceAspect : MethodInterception
     {
+        //Artık bu methodu controller de çağırdığımızda performance aspect araya giricek ve methodun çalışma aralığıı süre olarak bize verecektir.
+        //tüm bu işlemleri ayrı aspectler haline getirip istediğimiz methodun tepesinde attribute şeklinde uygulayarak hem okunabilirliği, hem modülariteyi, hem sürdürülebilirliği sağlamış olduk.
         private int _interval;
         private Stopwatch _stopwatch;
 

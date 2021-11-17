@@ -42,6 +42,8 @@ namespace WebAPI
             //AOP
             //Postsharp
             services.AddControllers();
+            
+            //services.AddMemoryCache();
             services.AddCors(options =>
             {
                 options.AddPolicy("AllowOrigin",
@@ -88,9 +90,9 @@ namespace WebAPI
             }
 
             app.ConfigureCustomExceptionMiddleware();
-
-            app.UseCors(builder => builder.WithOrigins("http://localhost:44345").AllowAnyHeader());
-
+            //bu adresten gelen herþeye güveniyorum kabul et
+            app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
+            
             app.UseHttpsRedirection();
 
             app.UseRouting();

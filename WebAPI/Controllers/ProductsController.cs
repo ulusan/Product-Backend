@@ -29,7 +29,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]
         public IActionResult GetAll()
         {
-            Thread.Sleep(5000);
+            Thread.Sleep(1000);
             //Swagger Swagger, JSON kullanılarak ifade edilen RESTful API'leri açıklamak için bir Arayüz Tanımlama Dilidir. 
             var result = _productService.GetAll();
             if (result.Success)
@@ -44,6 +44,28 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _productService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        //intention programming : api den yuakrı doğru yapılan kodlama
+        [HttpGet(("getbycategory"))]
+        public IActionResult GetAllByCategoryId(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        //bu dto ya karşılık gelecek : angular da productdetail model i oluşturmak
+        [HttpGet(("getproductdetails"))]
+        public IActionResult GetProductDetails()
+        {
+            var result = _productService.GetProductDetails();
             if (result.Success)
             {
                 return Ok(result);

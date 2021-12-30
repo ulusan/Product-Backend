@@ -52,7 +52,7 @@ namespace WebAPI
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 
-            //startup da bu instance üretimini yapmak ileriki süreçte sýkýntý çýkartýr. Çünkü ilerde bir API eklediðinde tekrardan enjekte etmek zorunda kalýrýz
+            //startup da bu instance ï¿½retimini yapmak ileriki sï¿½reï¿½te sï¿½kï¿½ntï¿½ ï¿½ï¿½kartï¿½r. ï¿½ï¿½nkï¿½ ilerde bir API eklediï¿½inde tekrardan enjekte etmek zorunda kalï¿½rï¿½z
             //services.AddSingleton<IProductService, ProductManager>();
             //services.AddSingleton<IProductDal, EfProductDal>();
 
@@ -82,6 +82,7 @@ namespace WebAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        //middleware
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -90,12 +91,13 @@ namespace WebAPI
             }
 
             app.ConfigureCustomExceptionMiddleware();
-            //bu adresten gelen herþeye güveniyorum kabul et
+            //bu adresten gelen herÅŸeye gÃ¼veniyorum kabul et
             app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader());
             
             app.UseHttpsRedirection();
 
             app.UseRouting();
+            
 
             app.UseAuthentication();
 

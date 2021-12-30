@@ -78,7 +78,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProductDeleted);
         }
         [CacheRemoveAspect("IProductService.Get")]
-        [SecuredOperation("product.add,admin")]
+        //[SecuredOperation("product.add,admin")]
         [ValidationAspect(typeof(ProductValidator))]
         public IResult Add(Product product)
         {
